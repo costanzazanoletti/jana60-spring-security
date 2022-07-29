@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<h1>Index</h1>
+	<a href="/admin" sec:authorize="hasAuthority('ADMIN')">Go to admin area</a>
+	<a href="/user" sec:authorize="hasAuthority('USER')">Go to user area</a>
+	<!--  utenti anonimi -->
+	<div sec:authorize="isAnonymous()">
+		<p>Benvenuto</p>
+		<a href="/login">Fai Login</a>
+	</div>
+	<!-- utenti autenticati -->
+	<div sec:authorize="isAuthenticated()">
+		<p>Logged user: <span sec:authentication="name"></span></p>
+		<p>Roles: <span sec:authentication="principal.authorities"></span></p>
+		<a href="/logout">Fai Logout</a>
+	</div>
+</html>
